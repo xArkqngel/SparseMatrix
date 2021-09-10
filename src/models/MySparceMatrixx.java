@@ -78,6 +78,31 @@ public class MySparceMatrixx<T> {
     }
 
     /**
+     *
+     * @param key
+     * @param xactual posicion x actual del elemento
+     * @param yactual posicion y actual del elemento
+     * @param x posicion x a mover
+     * @param y posicion y a mover
+     */
+    public void swapPos(T key, int xactual, int yactual,int x, int y){
+        remove(xactual,yactual);
+        add(key,x,y);
+    }
+
+    /**
+     * Calcula la distancia entre 2 puntos
+     * @param x1
+     * @param x2
+     * @param y1
+     * @param y2
+     * @return distancia entre los 2 puntos(celdas)
+     */
+    public int distanceBetween(int x1,int x2, int y1,int y2){
+        return (int) Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+    }
+
+    /**
      * añade un elemento en la pos x,y
      * @param key info del elemento
      * @param x
