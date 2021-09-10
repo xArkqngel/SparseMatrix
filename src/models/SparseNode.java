@@ -1,19 +1,19 @@
-package testGeo;
+package models;
 
 /**
  * @author Diego Fernando Alba Novoa
  * @date 2 Sept 2021
  */
-public class SparseMatrixNode<T>{
+public class SparseNode<T>{
 	public T key;
 
 	public int x;
 
 	public int y;
 
-	public SparseMatrixNode next = null;
+	public SparseNode next = null;
 
-	SparseMatrixNode(T key, int x, int y) {
+	SparseNode(T key, int x, int y) {
 
 		this.key = key;
 		this.x = x;
@@ -37,14 +37,14 @@ public class SparseMatrixNode<T>{
 	/**
 	 * @return the next
 	 */
-	public SparseMatrixNode getNext() {
+	public SparseNode getNext() {
 		return next;
 	}
 
 	/**
 	 * @param next the next to set
 	 */
-	public void setNext(SparseMatrixNode next) {
+	public void setNext(SparseNode next) {
 		this.next = next;
 	}
 	
