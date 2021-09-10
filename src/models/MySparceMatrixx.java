@@ -139,7 +139,13 @@ public class MySparceMatrixx<T> {
     }
 
     public int numberOfElementsIntoCircularArea(int x, int y, int radius){
-
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (distanceBetween(4,i,2,j) <= 4.5){
+                    matrix[i][j] = "O";
+                }else matrix[i][j] = "-";
+            }
+        }
 
 
         return -1;
