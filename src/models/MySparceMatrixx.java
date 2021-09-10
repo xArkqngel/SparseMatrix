@@ -145,4 +145,33 @@ public class MySparceMatrixx<T> {
         return -1;
     }
 
+    public String elementsRectangle(int xMin,int xMax,int yMin,int yMax){
+        String result = "";
+        SparseNode<T> node = this.begin;
+        while (node!=null){
+            if (node.x>=xMin && node.x<=xMax && node.y>=yMin && node.y<=yMax){
+                result += node.key+"\n";
+            }
+            node = node.next;
+        }
+        return result;
+    }
+    public void sort(){
+//        SparseNode<T> node = this.begin, index ;
+//        T temp;
+//        while (node != null) {
+//            index = node.next;
+//            while (index != null) {
+//                if (Math.hypot(index.x,index.y)>Math.hypot(node.x,node.y)) {
+//                    temp = node.key;
+//                    node.key = index.key;
+//                    index.key = temp;
+//                }
+//
+//                index = index.next;
+//            }
+//            node = node.next;
+//        }
+    }
+
 }
