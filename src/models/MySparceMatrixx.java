@@ -113,4 +113,11 @@ public class MySparceMatrixx<T> {
         }
     }
 
+    public int numberOfElementsIntoCircularArea(int x, int y, int radius){
+
+
+
+        return -1;
+    }
+
 }

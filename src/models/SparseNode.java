@@ -1,9 +1,5 @@
 package models;
 
-/**
- * @author Diego Fernando Alba Novoa
- * @date 2 Sept 2021
- */
 public class SparseNode<T>{
 	public T key;
 
@@ -14,7 +10,6 @@ public class SparseNode<T>{
 	public SparseNode next = null;
 
 	SparseNode(T key, int x, int y) {
-
 		this.key = key;
 		this.x = x;
 		this.y = y;
