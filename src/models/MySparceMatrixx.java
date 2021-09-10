@@ -1,12 +1,16 @@
 package models;
 
+import java.util.ArrayList;
+
 public class MySparceMatrixx<T> {
 
+    private ArrayList<SparseNode> elementsOfIntoCircularArea;
     private int rows;
     private int cols;
     private SparseNode begin = null;
 
     public MySparceMatrixx(int rows, int cols){
+        this.elementsOfIntoCircularArea = new ArrayList<>();
         this.cols=cols;
         this.rows=rows;
     }
@@ -138,11 +142,28 @@ public class MySparceMatrixx<T> {
         }
     }
 
+    /**
+     * Metodo encargado de recibir un punto central,un radio y marcar un area circular
+     * contando el numero de elementos dentro de dicha area, y agreandolos a una lista
+     * @param x posicion en x
+     * @param y posicion en y
+     * @param radius radio circulo
+     * @return cantidad de elementos dentro del area circular
+     */
     public int numberOfElementsIntoCircularArea(int x, int y, int radius){
-
-
-
-        return -1;
+        int totalElements = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (distanceBetween(4,i,2,j) <= 4.5){
+                    SparseNode tmp = search(i,j);
+                    if ( tmp.getKey() != null){
+                        this.elementsOfIntoCircularArea.add(tmp);
+                        totalElements++;
+                    }
+                }
+            }
+        }
+        return totalElements;
     }
 
     public String elementsRectangle(int xMin,int xMax,int yMin,int yMax){
