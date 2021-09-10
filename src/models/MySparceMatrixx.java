@@ -98,8 +98,8 @@ public class MySparceMatrixx<T> {
      * @param y2
      * @return distancia entre los 2 puntos(celdas)
      */
-    public int distanceBetween(int x1,int x2, int y1,int y2){
-        return (int) Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+    public double distanceBetween(int x1,int x2, int y1,int y2){
+        return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
     }
 
     /**
