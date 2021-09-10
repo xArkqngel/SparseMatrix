@@ -29,17 +29,13 @@ public class tester {
                 }
             }
 
-
-
+        //i = x0, length = nfilas+i
+        //j = y=0 [i]length-x = ncols
         for (int i = 2; i < 7; i++) {
             for (int j = 3; j < matrix[i].length-3; j++) {
                 matrix[i][j] = "O";
             }
-
         }
-
-
-
 
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
