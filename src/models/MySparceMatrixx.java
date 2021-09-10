@@ -166,16 +166,28 @@ public class MySparceMatrixx<T> {
         return totalElements;
     }
 
+    /**
+     * Metodo encargado de recibir 4 parametros que son los bordes del regtangulo, con estos datos encuentra la
+     * informacion que se encuentra entre el  rectangulo ingresado, agregando la llave del nodo a una cadena
+     * y con un contador que informara cuantos son los elemento totales dentro de la matriz
+     * @param xMin la coordenadda en x minima del rectanculo
+     * @param xMax la coordenadda en x maxima del rectanculo
+     * @param yMin la coordenadda en y minima del rectanculo
+     * @param yMax la coordenadda en y maxima del rectanculo
+     * @return String cantidad de elemetos dentro del rectangulo y elementos dentro de el
+     */
     public String elementsRectangle(int xMin,int xMax,int yMin,int yMax){
         String result = "";
+        int elements = 0;
         SparseNode<T> node = this.begin;
         while (node!=null){
             if (node.x>=xMin && node.x<=xMax && node.y>=yMin && node.y<=yMax){
                 result += node.key+"\n";
+                elements ++;
             }
             node = node.next;
         }
-        return result;
+        return "Los elementos que se encuentran en el rectangulo son : " + elements + "\n"+result;
     }
     public void sort(){
 //        SparseNode<T> node = this.begin, index ;
