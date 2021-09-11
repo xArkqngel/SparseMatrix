@@ -32,14 +32,46 @@ public class Client{
             switch (opcion){
                 case 1:
                     dataOutputStream1.writeUTF(case12());
+                    break;
+                case 2:
+                case 4:
+                    dataOutputStream1.writeUTF(case12());
+                    dataInputStream.readUTF();
+                    break;
+                case 3:
+                    dataOutputStream1.writeUTF(case3());
+                    break;
+                case 5:
+                    dataOutputStream1.writeUTF(caseDef());
                 break;
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+            }
         }
-    }
+
+        public String caseDef(){
+            int x,y;
+            System.out.println("Ingrese la coordenada x:");
+            x = input.nextInt();
+            System.out.println("Ingrese la coordenada y:");
+            y = input.nextInt();
+            return x+","+y;
+        }
+
+
+        public String case3(){
+            int x,y,ratio;
+            System.out.println("Ingrese la posición: X");
+            x = input.nextInt();
+            System.out.println("Ingrese la posicion: Y");
+            y = input.nextInt();
+            System.out.println("Ingrese el radio del circulo (entero)");
+            ratio = input.nextInt();
+            return x+","+y+","+ratio;
+        }
 
         public String case12(){
         int x,y,x1,y1;
@@ -48,7 +80,7 @@ public class Client{
             x = input.nextInt();
             System.out.println("y");
             y= input.nextInt();
-            System.out.println("");
+            System.out.println("Ingrese la segunda posicion:");
             System.out.println("x1");
             x1 = input.nextInt();
             System.out.println("1");
