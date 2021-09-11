@@ -106,10 +106,11 @@ public class MySparceMatrixx<T> {
     /**
      * añade un elemento en la pos x,y
      * @param key info del elemento
-     * @param x
-     * @param y
+     * @param coordinate valor de X y Y cordenada
      */
-    public void add(T key, int x, int y) {
+    public void add(T key, int [] coordinate) {
+        int x = coordinate[0];
+        int y = coordinate[1];
         if ((x < 0) || (y < 0))
             return;
         if ((x >= this.rows) || (y >= this.cols))
@@ -151,16 +152,13 @@ public class MySparceMatrixx<T> {
     /**
      * Metodo encargado de recibir un punto central,un radio y marcar un area circular
      * contando el numero de elementos dentro de dicha area, y agreandolos a una lista
-     * @param x posicion en x
-     * @param y posicion en y
-     * @param radius radio circulo
      * @return cantidad de elementos dentro del area circular
      */
-    public int numberOfElementsIntoCircularArea(int x, int y, int radius){
+    public int numberOfElementsIntoCircularArea(int[] datas){
         int totalElements = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (distanceBetween(4,i,2,j) <= 4.5){
+                if (distanceBetween(datas[0],i,datas[1],j) <= datas[2]){
                     SparseNode tmp = search(i,j);
                     if ( tmp.getKey() != null){
                         this.elementsOfIntoCircularArea.add(tmp);
