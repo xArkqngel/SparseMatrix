@@ -53,7 +53,8 @@ public class Client{
             x1 = input.nextInt();
             System.out.println("1");
             y1= input.nextInt();
-    }
+            return x+","+y+","+x1+","+y1;
+        }
 
     public static void main(String[] args) {
         new Client(args);
