@@ -66,10 +66,10 @@ public class MySparceMatrixx<T> {
 
     /**
      * elimina un elemento en la pos x,y
-     * @param x
-     * @param y
      */
-    public void remove(int x, int y) {
+    public void remove(int[] datas) {
+        int x = datas[0];
+        int y = datas[1];
         SparseNode found = search(x,y);
         if (found!=null){
             SparseNode prev = this.searchPrevious(x,y);
@@ -88,7 +88,8 @@ public class MySparceMatrixx<T> {
      */
     public void swapPos(T key, int[] coords){
         remove(coords[0],coords[1]);
-        add(key,coords[2],coords[3]);
+        int [] aux = new int[]{coords[2],coords[3]};
+        add(key,aux);
     }
 
     /**
