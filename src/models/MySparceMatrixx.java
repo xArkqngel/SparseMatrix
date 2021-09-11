@@ -84,14 +84,11 @@ public class MySparceMatrixx<T> {
     /**
      *
      * @param key
-     * @param xactual posicion x actual del elemento
-     * @param yactual posicion y actual del elemento
-     * @param x posicion x a mover
-     * @param y posicion y a mover
+     * @param coords arreglo con las coordenadas
      */
-    public void swapPos(T key, int xactual, int yactual,int x, int y){
-        remove(xactual,yactual);
-        add(key,x,y);
+    public void swapPos(T key, String[] coords){
+        remove(Integer.parseInt(coords[0]),Integer.parseInt(coords[1]));
+        add(key,Integer.parseInt(coords[2]),Integer.parseInt(coords[3]));
     }
 
     /**
@@ -142,8 +139,13 @@ public class MySparceMatrixx<T> {
         }
     }
 
-    public String[] splitter(String tosplit){
-        return tosplit.split(",");
+    public int[] splitter(String tosplit){
+        String[] strings = tosplit.split(",");
+        int[] aux = new int[strings.length];
+        for (int i = 0; i <strings.length ; i++) {
+            aux[i] = Integer.parseInt(strings[i]);
+        }
+        return aux;
     }
 
     /**
@@ -180,12 +182,12 @@ public class MySparceMatrixx<T> {
 //     * @param yMax la coordenadda en y maxima del rectanculo
      * @return String cantidad de elemetos dentro del rectangulo y elementos dentro de el
      */
-    public String elementsRectangle(String[] coords){
+    public String elementsRectangle(int[] coords){
         String result = "";
         int elements = 0;
         SparseNode<T> node = this.begin;
         while (node!=null){
-            if (node.x>=Integer.parseInt(coords[0]) && node.x<=Integer.parseInt(coords[2]) && node.y>=Integer.parseInt(coords[1]) && node.y<=Integer.parseInt(coords[3])){
+            if (node.x>=coords[0] && node.x<=coords[2] && node.y>=coords[1] && node.y<=coords[3]){
                 result += node.key+"\n";
                 elements ++;
             }
