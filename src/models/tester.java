@@ -6,7 +6,7 @@ public class tester {
         MySparceMatrixx test = new MySparceMatrixx<>(20, 20);
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                test.add(i+"-"+j,i,j);
+//                test.add(i+"-"+j,i,j);
             }
 
         }
