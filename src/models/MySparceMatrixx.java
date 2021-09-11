@@ -94,14 +94,10 @@ public class MySparceMatrixx<T> {
 
     /**
      * Calcula la distancia entre 2 puntos
-     * @param x1
-     * @param x2
-     * @param y1
-     * @param y2
      * @return distancia entre los 2 puntos(celdas)
      */
-    public double distanceBetween(int x1,int x2, int y1,int y2){
-        return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+    public double distanceBetween(int[] coords){
+        return Math.sqrt((coords[0]-coords[1])*(coords[0]-coords[1]) + (coords[2]-coords[3])*(coords[2]-coords[3]));
     }
 
     /**
@@ -159,7 +155,7 @@ public class MySparceMatrixx<T> {
         int totalElements = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (distanceBetween(datas[0],i,datas[1],j) <= datas[2]){
+                if (distanceBetween(new int[]{datas[0],i,datas[1],j}) <= datas[2]){
                     SparseNode tmp = search(i,j);
                     if ( tmp.getKey() != null){
                         this.elementsOfIntoCircularArea.add(tmp);
