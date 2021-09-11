@@ -86,9 +86,9 @@ public class MySparceMatrixx<T> {
      * @param key
      * @param coords arreglo con las coordenadas
      */
-    public void swapPos(T key, String[] coords){
-        remove(Integer.parseInt(coords[0]),Integer.parseInt(coords[1]));
-        add(key,Integer.parseInt(coords[2]),Integer.parseInt(coords[3]));
+    public void swapPos(T key, int[] coords){
+        remove(coords[0],coords[1]);
+        add(key,coords[2],coords[3]);
     }
 
     /**
