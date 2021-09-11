@@ -87,7 +87,8 @@ public class MySparceMatrixx<T> {
      * @param coords arreglo con las coordenadas
      */
     public void swapPos(T key, int[] coords){
-        remove(coords[0],coords[1]);
+        int [] tmp = new int[]{coords[0],coords[1]};
+        remove(tmp);
         int [] aux = new int[]{coords[2],coords[3]};
         add(key,aux);
     }
