@@ -12,7 +12,7 @@ public class Client {
     public Client(String[] args) {
         String ip = "localhost";
         int port = 12314;
-        System.out.println("Cliente");
+        //System.out.println("[*]Listening on " + ip);
         try {
             Socket socket;
             if (args.length == 2) {
@@ -20,28 +20,36 @@ public class Client {
                 port = Integer.parseInt(args[1]);
                 socket = new Socket(ip, port);
             } else socket = new Socket(ip, 23);
-            System.out.println("Se conecto a " + ip + ", en el puerto " + port);
+            System.out.println("[*]Connected on " + ip + ", port: " + port);
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
             DataOutputStream dataOutputStream1 = new DataOutputStream(socket.getOutputStream());
             ObjectOutputStream dataOutputStream2 = new ObjectOutputStream(socket.getOutputStream());
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             System.out.println("Opciones:\n 1.Cambiar de posicion un elemento \n 2.Determinar distancia entre 2 elementos \n " +
                     "3.Determinar elementos en un area circular \n 4.Determinar elementos en un area rectangular \n 5.Eliminar elemento");
-            Integer opcion = (input.nextInt());
-            dataOutputStream.writeInt(opcion);
+
+            int opcion = (input.nextInt());
+
+            dataOutputStream1.writeInt(opcion);
             switch (opcion){
                 case 1:
+
+
                     dataOutputStream1.writeUTF(case12());
                     break;
                 case 2:
+                    System.out.println("Has seleccionado --> Determinar distancia entre 2 elementos");
                 case 4:
                     dataOutputStream1.writeUTF(case12());
-                    dataInputStream.readUTF();
+                    System.out.println(dataInputStream.readUTF());
+
                     break;
                 case 3:
+                    System.out.println("Has seleccionado --> Determinar elementos en un area circular");
                     dataOutputStream1.writeUTF(case3());
                     break;
                 case 5:
+                    System.out.println("Has seleccionado -->  Eliminar elemento ");
                     dataOutputStream1.writeUTF(caseDef());
                 break;
             }
