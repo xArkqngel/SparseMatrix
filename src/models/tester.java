@@ -6,11 +6,12 @@ public class tester {
         MySparceMatrixx test = new MySparceMatrixx<>(20, 20);
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                test.add(i+"-"+j,i,j);
+//                test.add(i+"-"+j,i,j);
             }
 
         }
-        System.out.println(test.elementsRectangle(1,6,1,3));
+        //coordenada x,y x1,y1
+        System.out.println(test.elementsRectangle(test.splitter("1,1,6,3")));
 //        System.out.println(test.searchPrevious(12, 5).key + "");
 
 //        String[][] matrix = new String[15][15];

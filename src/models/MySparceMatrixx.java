@@ -66,10 +66,10 @@ public class MySparceMatrixx<T> {
 
     /**
      * elimina un elemento en la pos x,y
-     * @param x
-     * @param y
      */
-    public void remove(int x, int y) {
+    public void remove(int[] datas) {
+        int x = datas[0];
+        int y = datas[1];
         SparseNode found = search(x,y);
         if (found!=null){
             SparseNode prev = this.searchPrevious(x,y);
@@ -84,14 +84,13 @@ public class MySparceMatrixx<T> {
     /**
      *
      * @param key
-     * @param xactual posicion x actual del elemento
-     * @param yactual posicion y actual del elemento
-     * @param x posicion x a mover
-     * @param y posicion y a mover
+     * @param coords arreglo con las coordenadas
      */
-    public void swapPos(T key, int xactual, int yactual,int x, int y){
-        remove(xactual,yactual);
-        add(key,x,y);
+    public void swapPos(T key, int[] coords){
+        int [] tmp = new int[]{coords[0],coords[1]};
+        remove(tmp);
+        int [] aux = new int[]{coords[2],coords[3]};
+        add(key,aux);
     }
 
     /**
@@ -109,10 +108,11 @@ public class MySparceMatrixx<T> {
     /**
      * añade un elemento en la pos x,y
      * @param key info del elemento
-     * @param x
-     * @param y
+     * @param coordinate valor de X y Y cordenada
      */
-    public void add(T key, int x, int y) {
+    public void add(T key, int [] coordinate) {
+        int x = coordinate[0];
+        int y = coordinate[1];
         if ((x < 0) || (y < 0))
             return;
         if ((x >= this.rows) || (y >= this.cols))
@@ -142,19 +142,25 @@ public class MySparceMatrixx<T> {
         }
     }
 
+    public int[] splitter(String tosplit){
+        String[] strings = tosplit.split(",");
+        int[] aux = new int[strings.length];
+        for (int i = 0; i <strings.length ; i++) {
+            aux[i] = Integer.parseInt(strings[i]);
+        }
+        return aux;
+    }
+
     /**
      * Metodo encargado de recibir un punto central,un radio y marcar un area circular
      * contando el numero de elementos dentro de dicha area, y agreandolos a una lista
-     * @param x posicion en x
-     * @param y posicion en y
-     * @param radius radio circulo
      * @return cantidad de elementos dentro del area circular
      */
-    public int numberOfElementsIntoCircularArea(int x, int y, int radius){
+    public String numberOfElementsIntoCircularArea(int[] datas){
         int totalElements = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (distanceBetween(4,i,2,j) <= 4.5){
+                if (distanceBetween(datas[0],i,datas[1],j) <= datas[2]){
                     SparseNode tmp = search(i,j);
                     if ( tmp.getKey() != null){
                         this.elementsOfIntoCircularArea.add(tmp);
@@ -163,25 +169,25 @@ public class MySparceMatrixx<T> {
                 }
             }
         }
-        return totalElements;
+        return "Los elementos que se encuentran en el rectangulo son : " + totalElements;
     }
 
     /**
      * Metodo encargado de recibir 4 parametros que son los bordes del regtangulo, con estos datos encuentra la
      * informacion que se encuentra entre el  rectangulo ingresado, agregando la llave del nodo a una cadena
      * y con un contador que informara cuantos son los elemento totales dentro de la matriz
-     * @param xMin la coordenadda en x minima del rectanculo
-     * @param xMax la coordenadda en x maxima del rectanculo
-     * @param yMin la coordenadda en y minima del rectanculo
-     * @param yMax la coordenadda en y maxima del rectanculo
+//     * @param xMin la coordenadda en x minima del rectanculo
+//     * @param xMax la coordenadda en x maxima del rectanculo
+//     * @param yMin la coordenadda en y minima del rectanculo
+//     * @param yMax la coordenadda en y maxima del rectanculo
      * @return String cantidad de elemetos dentro del rectangulo y elementos dentro de el
      */
-    public String elementsRectangle(int xMin,int xMax,int yMin,int yMax){
+    public String elementsRectangle(int[] coords){
         String result = "";
         int elements = 0;
         SparseNode<T> node = this.begin;
         while (node!=null){
-            if (node.x>=xMin && node.x<=xMax && node.y>=yMin && node.y<=yMax){
+            if (node.x>=coords[0] && node.x<=coords[2] && node.y>=coords[1] && node.y<=coords[3]){
                 result += node.key+"\n";
                 elements ++;
             }
