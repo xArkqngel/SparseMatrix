@@ -5,7 +5,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-public class Client{
+public class Client {
 
     Scanner input = new Scanner(System.in);
 
@@ -19,7 +19,7 @@ public class Client{
                 ip = args[0];
                 port = Integer.parseInt(args[1]);
                 socket = new Socket(ip, port);
-            } else socket = new Socket(ip, port);
+            } else socket = new Socket(ip, 23);
             System.out.println("Se conecto a " + ip + ", en el puerto " + port);
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
             DataOutputStream dataOutputStream1 = new DataOutputStream(socket.getOutputStream());
@@ -83,7 +83,7 @@ public class Client{
             System.out.println("Ingrese la segunda posicion:");
             System.out.println("x1");
             x1 = input.nextInt();
-            System.out.println("1");
+            System.out.println("y1");
             y1= input.nextInt();
             return x+","+y+","+x1+","+y1;
         }
