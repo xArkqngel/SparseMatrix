@@ -43,8 +43,6 @@ public class MyServer {
     private void handleChangePos(String data){
         System.out.println("Has seleccionado ---> ***Cambiar de posicion un elemento*** ");
         this.stringMySparceMatrixx.swapPos();
-
-
     }
 
 
