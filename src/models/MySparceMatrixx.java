@@ -156,7 +156,7 @@ public class MySparceMatrixx<T> {
      * contando el numero de elementos dentro de dicha area, y agreandolos a una lista
      * @return cantidad de elementos dentro del area circular
      */
-    public int numberOfElementsIntoCircularArea(int[] datas){
+    public String numberOfElementsIntoCircularArea(int[] datas){
         int totalElements = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -169,7 +169,7 @@ public class MySparceMatrixx<T> {
                 }
             }
         }
-        return totalElements;
+        return "Los elementos que se encuentran en el rectangulo son : " + totalElements;
     }
 
     /**
