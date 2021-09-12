@@ -17,6 +17,7 @@ public class MyServer {
 
     public MyServer(int port) throws IOException {
         this.stringMySparceMatrixx = new MySparceMatrixx<>(50,50);
+        this.stringMySparceMatrixx.add("5", new int[]{20,20});
         this.serverSocket = new ServerSocket(port);
         this.startServer();
         this.dataInputStream  = new DataInputStream(this.socket.getInputStream());
@@ -36,15 +37,13 @@ public class MyServer {
                 Integer opcion = (dataInputStreamaux.readInt());
 
 
-                int opcion2 = dataInputStreamaux.readInt();
+                int choosenOption = dataInputStreamaux.readInt();
 
 
 
-                switch (opcion2) {
+                switch (choosenOption) {
                     case 1:
-                        //System.out.println("Ingrese las coordenadas ");
-                        this.handleChangePos(dataInputStreamaux.readUTF());
-
+                        dataOutputStreamaux.writeUTF(this.handleChangePos(dataInputStreamaux.readUTF()));
                         break;
                     case 2:
                         dataOutputStreamaux.writeUTF( this.handleDistanceBetweenElements(dataInputStreamaux.readUTF()));
@@ -55,6 +54,7 @@ public class MyServer {
                         dataOutputStreamaux.writeUTF(this.handleElementsInCircularArea(dataInputStreamaux.readUTF()));
                         break;
                     case 5:
+                        dataOutputStreamaux.writeUTF(this.handleDeleteElement(dataInputStreamaux.readUTF()));
                         break;
                 }
 
@@ -66,9 +66,8 @@ public class MyServer {
         }
     }
 
-    private void handleChangePos(String data){
-        System.out.println("Has seleccionado ---> ***Cambiar de posicion un elemento*** ");
-        //this.stringMySparceMatrixx.swapPos();
+    private String handleChangePos(String data){
+        return  this.stringMySparceMatrixx.swapPos(MySparceMatrixx.splitter(data))?"Cambiado de posicion satisfactoriamente":"No se ha podido cambiar de posicion";
     }
 
 
@@ -80,15 +79,15 @@ public class MyServer {
     }
 
     private String handleElementsInRectangularArea(String data){
-        return "Hay " + this.stringMySparceMatrixx.elementsRectangle(MySparceMatrixx.splitter(data))+ ", elementos en el area rectangular";
+        return this.stringMySparceMatrixx.elementsRectangle(MySparceMatrixx.splitter(data))+ ", elementos en el area rectangular";
     }
 
     private String handleElementsInCircularArea(String data){
-        return "Hay " + this.stringMySparceMatrixx.numberOfElementsIntoCircularArea( MySparceMatrixx.splitter(data))+", elementos en dicha area circular";
+        return this.stringMySparceMatrixx.numberOfElementsIntoCircularArea( MySparceMatrixx.splitter(data))+", elementos en dicha area circular";
     }
 
     private String handleDeleteElement(String data){
-        return this.stringMySparceMatrixx.remove(MySparceMatrixx.splitter(data))?"Elemento borrado satisfactoriamente": "Ups no se ha podido borrar el elemento";
+        return this.stringMySparceMatrixx.remove(MySparceMatrixx.splitter(data))?"Elemento borrado satisfactoriamente :)": "Ups no se ha podido borrar el elemento";
     }
 
     public static void main(String[] args) throws IOException {

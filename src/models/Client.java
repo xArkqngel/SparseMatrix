@@ -33,9 +33,9 @@ public class Client {
             dataOutputStream1.writeInt(opcion);
             switch (opcion){
                 case 1:
-
-
+                    System.out.println("Has seleccionado --> Cambiar de posicion un elemento");
                     dataOutputStream1.writeUTF(case12());
+                    System.out.println(dataInputStream.readUTF());
                     break;
                 case 2:
                     System.out.println("Has seleccionado --> Determinar distancia entre 2 elementos");
@@ -47,10 +47,12 @@ public class Client {
                 case 3:
                     System.out.println("Has seleccionado --> Determinar elementos en un area circular");
                     dataOutputStream1.writeUTF(case3());
+                    System.out.println(dataInputStream.readUTF());
                     break;
                 case 5:
                     System.out.println("Has seleccionado -->  Eliminar elemento ");
                     dataOutputStream1.writeUTF(caseDef());
+                    System.out.println(dataInputStream.readUTF());
                 break;
             }
         } catch (UnknownHostException e) {
@@ -62,9 +64,9 @@ public class Client {
 
         public String caseDef(){
             int x,y;
-            System.out.println("Ingrese la coordenada x:");
+            System.out.println("Ingrese la coordenada X:");
             x = input.nextInt();
-            System.out.println("Ingrese la coordenada y:");
+            System.out.println("Ingrese la coordenada Y:");
             y = input.nextInt();
             return x+","+y;
         }
@@ -83,20 +85,21 @@ public class Client {
 
         public String case12(){
         int x,y,x1,y1;
-            System.out.println("Ingrese la primer posicion:");
-            System.out.println("x");
+            System.out.println("Ingrese las coordenadas de la primer posicion:");
+            System.out.println("X --> ");
             x = input.nextInt();
-            System.out.println("y");
+            System.out.println("Y --> ");
             y= input.nextInt();
-            System.out.println("Ingrese la segunda posicion:");
-            System.out.println("x1");
+            System.out.println("Ingrese las coordenadas de la segunda posicion:");
+            System.out.println("X --> ");
             x1 = input.nextInt();
-            System.out.println("y1");
+            System.out.println("Y --> ");
             y1= input.nextInt();
             return x+","+y+","+x1+","+y1;
         }
 
     public static void main(String[] args) {
+        System.out.println("Ingrese primero la IP destino y luego el puerto");
         new Client(args);
     }
 

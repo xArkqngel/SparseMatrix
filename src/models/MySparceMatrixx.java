@@ -87,12 +87,14 @@ public class MySparceMatrixx<T> {
     /**
      * @param coords arreglo con las coordenadas
      */
-    public void swapPos(int[] coords){
+    public boolean swapPos(int[] coords){
+        boolean result = false;
         int [] tmp = new int[]{coords[0],coords[1]};
         T key = (T) search(coords[0],coords[1]).key;
-        remove(tmp);
+        result = remove(tmp);
         int [] aux = new int[]{coords[2],coords[3]};
         add(key,aux);
+        return result;
     }
 
     /**
@@ -165,7 +167,7 @@ public class MySparceMatrixx<T> {
             for (int j = 0; j < cols; j++) {
                 if (distanceBetween(datas[0],i,datas[1],j) <= datas[2]){
                     SparseNode tmp = search(i,j);
-                    if ( tmp.getKey() != null && tmp!=null){
+                    if (tmp!=null&& tmp.getKey()!=null){
                         this.elementsOfIntoCircularArea.add(tmp);
                         totalElements++;
                     }
