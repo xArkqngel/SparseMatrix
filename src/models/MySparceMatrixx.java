@@ -67,7 +67,8 @@ public class MySparceMatrixx<T> {
     /**
      * elimina un elemento en la pos x,y
      */
-    public void remove(int[] datas) {
+    public boolean remove(int[] datas) {
+        boolean result = false;
         int x = datas[0];
         int y = datas[1];
         SparseNode found = search(x,y);
@@ -78,26 +79,35 @@ public class MySparceMatrixx<T> {
             } else {
                 this.begin = found.next;
             }
+            result = true;
         }
+        return result;
     }
 
     /**
      * @param coords arreglo con las coordenadas
      */
-    public void swapPos(int[] coords){
+    public boolean swapPos(int[] coords){
+        boolean result = false;
         int [] tmp = new int[]{coords[0],coords[1]};
         T key = (T) search(coords[0],coords[1]).key;
-        remove(tmp);
+        result = remove(tmp);
         int [] aux = new int[]{coords[2],coords[3]};
         add(key,aux);
+        return result;
     }
 
     /**
      * Calcula la distancia entre 2 puntos
+     * @param x1
+     * @param x2
+     * @param y1
+     * @param y2
      * @return distancia entre los 2 puntos(celdas)
      */
-    public double distanceBetween(int[] coords){
-        return Math.sqrt((coords[0]-coords[1])*(coords[0]-coords[1]) + (coords[2]-coords[3])*(coords[2]-coords[3]));
+    public double distanceBetween(int x1,int y1, int x2,int y2){
+       // return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+        return Math.hypot(x2-x1,y2-y1);
     }
 
     /**
@@ -137,7 +147,7 @@ public class MySparceMatrixx<T> {
         }
     }
 
-    public int[] splitter(String tosplit){
+    public static int[] splitter(String tosplit){
         String[] strings = tosplit.split(",");
         int[] aux = new int[strings.length];
         for (int i = 0; i <strings.length ; i++) {
@@ -155,16 +165,16 @@ public class MySparceMatrixx<T> {
         int totalElements = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (distanceBetween(new int[]{datas[0],i,datas[1],j}) <= datas[2]){
+                if (distanceBetween(datas[0],i,datas[1],j) <= datas[2]){
                     SparseNode tmp = search(i,j);
-                    if ( tmp.getKey() != null){
+                    if (tmp!=null&& tmp.getKey()!=null){
                         this.elementsOfIntoCircularArea.add(tmp);
                         totalElements++;
                     }
                 }
             }
         }
-        return "Los elementos que se encuentran en el rectangulo son : " + totalElements;
+        return "Los elementos que se encuentran en el circulo son : " + totalElements;
     }
 
     /**
